@@ -1,0 +1,21 @@
+﻿@using Mvc_Vize_Projesi.Models.Entity;
+@model List<Tbl_Ogrenci>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<table class="table table-bordered">
+    <tr>
+        <th>Ogrendi Id</th>
+        <th>Ogrendi Ad</th>
+    </tr>
+    <tbody>
+        @foreach(var ogr in Model)
+            {
+                <tr>
+                    <td>@ogr.ogreinciid</td>
+                    <td>@ogr.OgrecnciAdSoyad</td>
+                </tr>
+            }
+    </tbody>
+</table>

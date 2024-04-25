@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="vize_mvcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="KullaniciYetki">
+          <Property Name="Mudur" Type="bit" />
+          <Property Name="AyseHanim" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="Tbl_Idare">
+          <Key>
+            <PropertyRef Name="idareid" />
+          </Key>
+          <Property Name="idareid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idareAdSoyad" Type="varchar" MaxLength="255" />
+          <Property Name="idareUnvan" Type="varchar" MaxLength="50" />
+          <Property Name="idarebasla" Type="datetime" />
+          <Property Name="idarecikis" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tbl_Ogrenci">
+          <Key>
+            <PropertyRef Name="ogreinciid" />
+          </Key>
+          <Property Name="ogreinciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrecnciAdSoyad" Type="varchar" MaxLength="250" />
+          <Property Name="OgrenciKredi" Type="int" />
+          <Property Name="OgrenciMezun" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Ogretmen">
+          <Key>
+            <PropertyRef Name="ogretmenid" />
+          </Key>
+          <Property Name="ogretmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgretmenAd" Type="varchar" MaxLength="50" />
+          <Property Name="OgretmenSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="OgretmenGiris" Type="datetime" />
+          <Property Name="OgretmenCikis" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="vize_mvcModelStoreContainer">
+          <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vize_mvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Idare">
+          <Key>
+            <PropertyRef Name="idareid" />
+          </Key>
+          <Property Name="idareid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idareAdSoyad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="idareUnvan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idarebasla" Type="DateTime" Precision="3" />
+          <Property Name="idarecikis" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tbl_Ogrenci">
+          <Key>
+            <PropertyRef Name="ogreinciid" />
+          </Key>
+          <Property Name="ogreinciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrecnciAdSoyad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciKredi" Type="Int32" />
+          <Property Name="OgrenciMezun" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Tbl_Ogretmen">
+          <Key>
+            <PropertyRef Name="ogretmenid" />
+          </Key>
+          <Property Name="ogretmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgretmenAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretmenSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgretmenGiris" Type="DateTime" Precision="3" />
+          <Property Name="OgretmenCikis" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="vize_mvcEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" />
+          <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" />
+          <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vize_mvcModelStoreContainer" CdmEntityContainer="vize_mvcEntities">
+          <EntitySetMapping Name="Tbl_Idare">
+            <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Idare">
+              <MappingFragment StoreEntitySet="Tbl_Idare">
+                <ScalarProperty Name="idareid" ColumnName="idareid" />
+                <ScalarProperty Name="idareAdSoyad" ColumnName="idareAdSoyad" />
+                <ScalarProperty Name="idareUnvan" ColumnName="idareUnvan" />
+                <ScalarProperty Name="idarebasla" ColumnName="idarebasla" />
+                <ScalarProperty Name="idarecikis" ColumnName="idarecikis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Ogrenci">
+            <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Ogrenci">
+              <MappingFragment StoreEntitySet="Tbl_Ogrenci">
+                <ScalarProperty Name="ogreinciid" ColumnName="ogreinciid" />
+                <ScalarProperty Name="OgrecnciAdSoyad" ColumnName="OgrecnciAdSoyad" />
+                <ScalarProperty Name="OgrenciKredi" ColumnName="OgrenciKredi" />
+                <ScalarProperty Name="OgrenciMezun" ColumnName="OgrenciMezun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Ogretmen">
+            <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Ogretmen">
+              <MappingFragment StoreEntitySet="Tbl_Ogretmen">
+                <ScalarProperty Name="ogretmenid" ColumnName="ogretmenid" />
+                <ScalarProperty Name="OgretmenAd" ColumnName="OgretmenAd" />
+                <ScalarProperty Name="OgretmenSoyad" ColumnName="OgretmenSoyad" />
+                <ScalarProperty Name="OgretmenGiris" ColumnName="OgretmenGiris" />
+                <ScalarProperty Name="OgretmenCikis" ColumnName="OgretmenCikis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
