@@ -12,12 +12,10 @@ namespace Mvc_Vize_Projesi.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Ogrenci
+    public partial class KullaniciYetki
     {
-        public int ogreinciid { get; set; }
-        public string OgrecnciAdSoyad { get; set; }
-        public Nullable<int> OgrenciNo { get; set; }
-        public Nullable<int> OgrenciKredi { get; set; }
-        public Nullable<bool> OgrenciMezun { get; set; }
+        public int yetkiid { get; set; }
+        public Nullable<bool> Mudur { get; set; }
+        public Nullable<bool> AyseHanim { get; set; }
     }
 }

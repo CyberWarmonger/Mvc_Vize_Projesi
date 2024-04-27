@@ -11,7 +11,7 @@ namespace Mvc_Vize_Projesi.Controllers
     public class OgretmenController : Controller
     {
         // GET: Ogretmen
-        vize_mvcEntities db = new vize_mvcEntities();
+        vize_mvcEntities2 db = new vize_mvcEntities2();
         public ActionResult Index()
         {
             var ogretmenler = db.Tbl_Ogretmen.ToList();

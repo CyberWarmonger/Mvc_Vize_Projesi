@@ -13,10 +13,10 @@ namespace Mvc_Vize_Projesi.Models.Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class vize_mvcEntities : DbContext
+    public partial class vize_mvcEntities2 : DbContext
     {
-        public vize_mvcEntities()
-            : base("name=vize_mvcEntities")
+        public vize_mvcEntities2()
+            : base("name=vize_mvcEntities2")
         {
         }
     
@@ -28,5 +28,6 @@ namespace Mvc_Vize_Projesi.Models.Entity
         public virtual DbSet<Tbl_Idare> Tbl_Idare { get; set; }
         public virtual DbSet<Tbl_Ogrenci> Tbl_Ogrenci { get; set; }
         public virtual DbSet<Tbl_Ogretmen> Tbl_Ogretmen { get; set; }
+        public virtual DbSet<KullaniciYetki> KullaniciYetki { get; set; }
     }
 }

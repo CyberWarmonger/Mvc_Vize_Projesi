@@ -6,11 +6,15 @@
     <edmx:StorageModels>
       <Schema Namespace="vize_mvcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="KullaniciYetki">
+          <Key>
+            <PropertyRef Name="yetkiid" />
+          </Key>
+          <Property Name="yetkiid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mudur" Type="bit" />
           <Property Name="AyseHanim" Type="bit" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Tbl_Idare">
           <Key>
             <PropertyRef Name="idareid" />
@@ -27,6 +31,7 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           </Key>
           <Property Name="ogreinciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OgrecnciAdSoyad" Type="varchar" MaxLength="250" />
+          <Property Name="OgrenciNo" Type="int" />
           <Property Name="OgrenciKredi" Type="int" />
           <Property Name="OgrenciMezun" Type="bit" />
         </EntityType>
@@ -44,6 +49,13 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciYetki" EntityType="Self.KullaniciYetki" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KullaniciYetki].[yetkiid] AS [yetkiid], 
+    [KullaniciYetki].[Mudur] AS [Mudur], 
+    [KullaniciYetki].[AyseHanim] AS [AyseHanim]
+    FROM [dbo].[KullaniciYetki] AS [KullaniciYetki]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -66,6 +78,7 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           </Key>
           <Property Name="ogreinciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OgrecnciAdSoyad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciNo" Type="Int32" />
           <Property Name="OgrenciKredi" Type="Int32" />
           <Property Name="OgrenciMezun" Type="Boolean" />
         </EntityType>
@@ -79,17 +92,26 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="OgretmenGiris" Type="DateTime" Precision="3" />
           <Property Name="OgretmenCikis" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="vize_mvcEntities" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="KullaniciYetki">
+          <Key>
+            <PropertyRef Name="yetkiid" />
+          </Key>
+          <Property Name="yetkiid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mudur" Type="Boolean" />
+          <Property Name="AyseHanim" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="vize_mvcEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" />
           <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" />
+          <EntitySet Name="KullaniciYetki" EntityType="Self.KullaniciYetki" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="vize_mvcModelStoreContainer" CdmEntityContainer="vize_mvcEntities">
+        <EntityContainerMapping StorageEntityContainer="vize_mvcModelStoreContainer" CdmEntityContainer="vize_mvcEntities2">
           <EntitySetMapping Name="Tbl_Idare">
             <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Idare">
               <MappingFragment StoreEntitySet="Tbl_Idare">
@@ -106,6 +128,7 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
               <MappingFragment StoreEntitySet="Tbl_Ogrenci">
                 <ScalarProperty Name="ogreinciid" ColumnName="ogreinciid" />
                 <ScalarProperty Name="OgrecnciAdSoyad" ColumnName="OgrecnciAdSoyad" />
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
                 <ScalarProperty Name="OgrenciKredi" ColumnName="OgrenciKredi" />
                 <ScalarProperty Name="OgrenciMezun" ColumnName="OgrenciMezun" />
               </MappingFragment>
@@ -119,6 +142,15 @@ warning 6013: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
                 <ScalarProperty Name="OgretmenSoyad" ColumnName="OgretmenSoyad" />
                 <ScalarProperty Name="OgretmenGiris" ColumnName="OgretmenGiris" />
                 <ScalarProperty Name="OgretmenCikis" ColumnName="OgretmenCikis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciYetki">
+            <EntityTypeMapping TypeName="vize_mvcModel.KullaniciYetki">
+              <MappingFragment StoreEntitySet="KullaniciYetki">
+                <ScalarProperty Name="yetkiid" ColumnName="yetkiid" />
+                <ScalarProperty Name="Mudur" ColumnName="Mudur" />
+                <ScalarProperty Name="AyseHanim" ColumnName="AyseHanim" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
