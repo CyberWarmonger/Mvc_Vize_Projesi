@@ -15,6 +15,14 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="Mudur" Type="bit" />
           <Property Name="AyseHanim" Type="bit" />
         </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -57,7 +65,20 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="OgretmenGiris" Type="datetime" />
           <Property Name="OgretmenCikis" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Tbl_Ogrenci_Tbl_Ogrenci">
+          <End Role="Tbl_Ogrenci" Type="Self.Tbl_Ogrenci" Multiplicity="1" />
+          <End Role="Tbl_Ogrenci1" Type="Self.Tbl_Ogrenci" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Ogrenci">
+              <PropertyRef Name="ogreinciid" />
+            </Principal>
+            <Dependent Role="Tbl_Ogrenci1">
+              <PropertyRef Name="ogreinciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="vize_mvcModelStoreContainer">
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" Schema="dbo" store:Type="Tables" />
@@ -69,12 +90,24 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
     [KullaniciYetki].[AyseHanim] AS [AyseHanim]
     FROM [dbo].[KullaniciYetki] AS [KullaniciYetki]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Tbl_Ogrenci_Tbl_Ogrenci" Association="Self.FK_Tbl_Ogrenci_Tbl_Ogrenci">
+            <End Role="Tbl_Ogrenci" EntitySet="Tbl_Ogrenci" />
+            <End Role="Tbl_Ogrenci1" EntitySet="Tbl_Ogrenci" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vize_mvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -105,6 +138,8 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="OgrenciNo" Type="Int32" />
           <Property Name="OgrenciKredi" Type="Int32" />
           <Property Name="OgrenciMezun" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Ogrenci1" Relationship="Self.FK_Tbl_Ogrenci_Tbl_Ogrenci" FromRole="Tbl_Ogrenci" ToRole="Tbl_Ogrenci1" />
+          <NavigationProperty Name="Tbl_Ogrenci2" Relationship="Self.FK_Tbl_Ogrenci_Tbl_Ogrenci" FromRole="Tbl_Ogrenci1" ToRole="Tbl_Ogrenci" />
         </EntityType>
         <EntityType Name="Tbl_Ogretmen">
           <Key>
@@ -125,12 +160,29 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="Mudur" Type="Boolean" />
           <Property Name="AyseHanim" Type="Boolean" />
         </EntityType>
+        <Association Name="FK_Tbl_Ogrenci_Tbl_Ogrenci">
+          <End Role="Tbl_Ogrenci" Type="Self.Tbl_Ogrenci" Multiplicity="1" />
+          <End Role="Tbl_Ogrenci1" Type="Self.Tbl_Ogrenci" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Ogrenci">
+              <PropertyRef Name="ogreinciid" />
+            </Principal>
+            <Dependent Role="Tbl_Ogrenci1">
+              <PropertyRef Name="ogreinciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="vize_mvcEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="login" EntityType="Self.login" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" />
           <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" />
           <EntitySet Name="KullaniciYetki" EntityType="Self.KullaniciYetki" />
+          <AssociationSet Name="FK_Tbl_Ogrenci_Tbl_Ogrenci" Association="Self.FK_Tbl_Ogrenci_Tbl_Ogrenci">
+            <End Role="Tbl_Ogrenci" EntitySet="Tbl_Ogrenci" />
+            <End Role="Tbl_Ogrenci1" EntitySet="Tbl_Ogrenci" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -138,6 +190,15 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="vize_mvcModelStoreContainer" CdmEntityContainer="vize_mvcEntities2">
+          <EntitySetMapping Name="login">
+            <EntityTypeMapping TypeName="vize_mvcModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="vize_mvcModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">

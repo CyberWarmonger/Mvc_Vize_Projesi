@@ -12,16 +12,10 @@ namespace Mvc_Vize_Projesi.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Ogrenci
+    public partial class login
     {
-        public int ogreinciid { get; set; }
-        public string OgrenciBolum { get; set; }
-        public string OgrenciAdSoyad { get; set; }
-        public Nullable<int> OgrenciNo { get; set; }
-        public Nullable<int> OgrenciKredi { get; set; }
-        public Nullable<bool> OgrenciMezun { get; set; }
-    
-        public virtual Tbl_Ogrenci Tbl_Ogrenci1 { get; set; }
-        public virtual Tbl_Ogrenci Tbl_Ogrenci2 { get; set; }
+        public int id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }

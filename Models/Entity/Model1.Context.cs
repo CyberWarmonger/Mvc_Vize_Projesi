@@ -25,6 +25,7 @@ namespace Mvc_Vize_Projesi.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<login> login { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tbl_Idare> Tbl_Idare { get; set; }
         public virtual DbSet<Tbl_Ogrenci> Tbl_Ogrenci { get; set; }
