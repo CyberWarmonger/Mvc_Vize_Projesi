@@ -4,12 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
 @{
-    var AktifOgrenciler = Model.Where(ogr => !ogr.OgrenciMezun.HasValue || !ogr.OgrenciMezun.Value).ToList();
+    var MezunOgrenciler = Model.Where(ogr => ogr.OgrenciMezun.HasValue && ogr.OgrenciMezun.Value).ToList();
 }
 
-
+<h2>Mezun Öğrenciler Listesi</h2>
 
 
 
@@ -24,8 +23,10 @@
         <th>Sil</th>
         <th>Guncelle</th>
     </tr>
+
+
     <tbody>
-        @foreach (var ogr in AktifOgrenciler)
+        @foreach (var ogr in MezunOgrenciler)
         {
             <tr>
                 <td>@ogr.ogreinciid</td>
@@ -34,10 +35,9 @@
                 <td>@ogr.OgrenciNo</td>
                 <td>@ogr.OgrenciKredi</td>
                 <td>@ogr.OgrenciMezun</td>
-                <td><a href="/Ogrenci/Sil/@ogr.ogreinciid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Ogrenci/SIL/@ogr.ogreinciid" class="btn btn-danger">Sil</a></td>
                 <td><a href="/Ogrenci/OgrenciGetir/@ogr.ogreinciid" class="btn btn-success">Guncelle</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a href="/Ogrenci/YeniOgrenci/" class="btn btn-primary">Yeni Ogrenci Ekle</a>
