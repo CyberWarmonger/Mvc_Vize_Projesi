@@ -43,6 +43,16 @@ namespace Mvc_Vize_Projesi.Controllers
             var ogr = db.Tbl_Ogrenci.Find(id);
             return View("OgrenciGetir", ogr);
         }
-
+        public ActionResult Guncelle(Tbl_Ogrenci p1)
+        {
+            var ogr = db.Tbl_Ogrenci.Find(p1.ogreinciid);
+            ogr.OgrenciBolum = p1.OgrenciBolum;
+            ogr.OgrenciAdSoyad = p1.OgrenciAdSoyad;
+            ogr.OgrenciNo = p1.OgrenciNo;
+            ogr.OgrenciKredi= p1.OgrenciKredi;
+            ogr.OgrenciMezun= p1.OgrenciMezun;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

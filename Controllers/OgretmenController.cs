@@ -42,5 +42,16 @@ namespace Mvc_Vize_Projesi.Controllers
             var ogretmen = db.Tbl_Ogretmen.Find(id);
             return View("OgretmenGetir", ogretmen);
         }
+        public ActionResult Guncelle(Tbl_Ogretmen p1)
+        {
+            var ogr = db.Tbl_Ogretmen.Find(p1.ogretmenid);
+            ogr.OgretmenBolum = p1.OgretmenBolum;
+            ogr.OgretmenAd = p1.OgretmenAd;
+            ogr.OgretmenSoyad = p1.OgretmenSoyad;
+            ogr.OgretmenGiris = p1.OgretmenGiris;
+            ogr.OgretmenCikis = p1.OgretmenCikis;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
