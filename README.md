@@ -1,2 +1,2 @@
-![ogrenci list](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/c4aa52d5-1f6c-459a-a7da-315806952b8e)
-![ogretmen list](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/b2f0fc00-b4f9-4d9e-acb7-630c1be034be)
+![OgretmenList](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/e3232396-51d6-4eda-9cbb-36a23a7667c7)
+![OgrenciList](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/41952247-e06d-4d61-8e0d-ae5128ff587e)
