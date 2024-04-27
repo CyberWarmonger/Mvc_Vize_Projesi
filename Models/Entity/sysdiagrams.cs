@@ -12,13 +12,12 @@ namespace Mvc_Vize_Projesi.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Ogretmen
+    public partial class sysdiagrams
     {
-        public int ogretmenid { get; set; }
-        public string OgretmenBolum { get; set; }
-        public string OgretmenAd { get; set; }
-        public string OgretmenSoyad { get; set; }
-        public Nullable<System.DateTime> OgretmenGiris { get; set; }
-        public Nullable<System.DateTime> OgretmenCikis { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

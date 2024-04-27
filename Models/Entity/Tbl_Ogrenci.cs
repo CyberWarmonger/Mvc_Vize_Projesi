@@ -15,7 +15,8 @@ namespace Mvc_Vize_Projesi.Models.Entity
     public partial class Tbl_Ogrenci
     {
         public int ogreinciid { get; set; }
-        public string OgrecnciAdSoyad { get; set; }
+        public string OgrenciBolum { get; set; }
+        public string OgrenciAdSoyad { get; set; }
         public Nullable<int> OgrenciNo { get; set; }
         public Nullable<int> OgrenciKredi { get; set; }
         public Nullable<bool> OgrenciMezun { get; set; }

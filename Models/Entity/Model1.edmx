@@ -15,6 +15,16 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="Mudur" Type="bit" />
           <Property Name="AyseHanim" Type="bit" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tbl_Idare">
           <Key>
             <PropertyRef Name="idareid" />
@@ -30,7 +40,8 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <PropertyRef Name="ogreinciid" />
           </Key>
           <Property Name="ogreinciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OgrecnciAdSoyad" Type="varchar" MaxLength="250" />
+          <Property Name="OgrenciBolum" Type="varchar" MaxLength="50" />
+          <Property Name="OgrenciAdSoyad" Type="varchar" MaxLength="250" />
           <Property Name="OgrenciNo" Type="int" />
           <Property Name="OgrenciKredi" Type="int" />
           <Property Name="OgrenciMezun" Type="bit" />
@@ -40,12 +51,14 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <PropertyRef Name="ogretmenid" />
           </Key>
           <Property Name="ogretmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgretmenBolum" Type="varchar" MaxLength="50" />
           <Property Name="OgretmenAd" Type="varchar" MaxLength="50" />
           <Property Name="OgretmenSoyad" Type="varchar" MaxLength="50" />
           <Property Name="OgretmenGiris" Type="datetime" />
           <Property Name="OgretmenCikis" Type="datetime" />
         </EntityType>
         <EntityContainer Name="vize_mvcModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" Schema="dbo" store:Type="Tables" />
@@ -62,6 +75,16 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vize_mvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Tbl_Idare">
           <Key>
             <PropertyRef Name="idareid" />
@@ -77,7 +100,8 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <PropertyRef Name="ogreinciid" />
           </Key>
           <Property Name="ogreinciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OgrecnciAdSoyad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciBolum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OgrenciAdSoyad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="OgrenciNo" Type="Int32" />
           <Property Name="OgrenciKredi" Type="Int32" />
           <Property Name="OgrenciMezun" Type="Boolean" />
@@ -87,6 +111,7 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <PropertyRef Name="ogretmenid" />
           </Key>
           <Property Name="ogretmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgretmenBolum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OgretmenAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OgretmenSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OgretmenGiris" Type="DateTime" Precision="3" />
@@ -101,6 +126,7 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
           <Property Name="AyseHanim" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="vize_mvcEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tbl_Idare" EntityType="Self.Tbl_Idare" />
           <EntitySet Name="Tbl_Ogrenci" EntityType="Self.Tbl_Ogrenci" />
           <EntitySet Name="Tbl_Ogretmen" EntityType="Self.Tbl_Ogretmen" />
@@ -112,6 +138,17 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="vize_mvcModelStoreContainer" CdmEntityContainer="vize_mvcEntities2">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="vize_mvcModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tbl_Idare">
             <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Idare">
               <MappingFragment StoreEntitySet="Tbl_Idare">
@@ -127,7 +164,8 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Ogrenci">
               <MappingFragment StoreEntitySet="Tbl_Ogrenci">
                 <ScalarProperty Name="ogreinciid" ColumnName="ogreinciid" />
-                <ScalarProperty Name="OgrecnciAdSoyad" ColumnName="OgrecnciAdSoyad" />
+                <ScalarProperty Name="OgrenciBolum" ColumnName="OgrenciBolum" />
+                <ScalarProperty Name="OgrenciAdSoyad" ColumnName="OgrenciAdSoyad" />
                 <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
                 <ScalarProperty Name="OgrenciKredi" ColumnName="OgrenciKredi" />
                 <ScalarProperty Name="OgrenciMezun" ColumnName="OgrenciMezun" />
@@ -138,6 +176,7 @@ warning 6002: The table/view 'vize_mvc.dbo.KullaniciYetki' does not have a prima
             <EntityTypeMapping TypeName="vize_mvcModel.Tbl_Ogretmen">
               <MappingFragment StoreEntitySet="Tbl_Ogretmen">
                 <ScalarProperty Name="ogretmenid" ColumnName="ogretmenid" />
+                <ScalarProperty Name="OgretmenBolum" ColumnName="OgretmenBolum" />
                 <ScalarProperty Name="OgretmenAd" ColumnName="OgretmenAd" />
                 <ScalarProperty Name="OgretmenSoyad" ColumnName="OgretmenSoyad" />
                 <ScalarProperty Name="OgretmenGiris" ColumnName="OgretmenGiris" />

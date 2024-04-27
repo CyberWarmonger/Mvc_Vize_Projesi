@@ -17,5 +17,17 @@ namespace Mvc_Vize_Projesi.Controllers
             var ogretmenler = db.Tbl_Ogretmen.ToList();
             return View(ogretmenler);
         }
+        [HttpGet]
+        public ActionResult YeniOgretmen()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult YeniOgretmen(Tbl_Ogretmen p1) 
+        {
+            db.Tbl_Ogretmen.Add(p1);
+            db.SaveChanges();
+            return View();
+        }
     }
 }

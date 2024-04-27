@@ -4,5 +4,45 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>YeniOgrenci</h2>
+<form class="form-group" method="post">
+
+    <div>
+        <label>Ogrenci Bolumu</label>
+        @Html.DropDownList("OgrenciBolum", new SelectList(new List<SelectListItem>
+{
+new SelectListItem { Text = "Ogrenci Bolumunu Seçiniz", Value = "" },
+new SelectListItem { Text = "Bilgisayar", Value = "Bilgisayar" },
+new SelectListItem { Text = "Makine", Value = "Makine" },
+}, "Value", "Text"), new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Ogrenci Adi Soyadi</label>
+        <input type="text" class="form-control" name="OgrenciAdSoyad" />
+    </div>
+    <div>
+        <label>Ogrenci No</label>
+        <input type="text" class="form-control" name="OgrenciNo" />
+    </div>
+    <div>
+        <label>Ogrenci Kredisi</label>
+        <input type="text" class="form-control" name="OgrenciKredi" />
+    </div>
+
+    <div>
+        <label>Ogrenci Mezuniyet</label>
+        @Html.DropDownList("OgrenciMezun", new SelectList(new List<SelectListItem>
+{
+new SelectListItem { Text = "Ogrenci Mezuniyet Durumu", Value = "" },
+new SelectListItem { Text = "Mezun", Value = "True" },
+new SelectListItem { Text = "Degil", Value = "False" },
+}, "Value", "Text"), new { @class = "form-control" })
+    </div>
+
+
+    <div style="margin-top:21px">
+        <button class="btn btn-info">Ogrenci Ekle</button>
+    </div>
+
+</form>
 
