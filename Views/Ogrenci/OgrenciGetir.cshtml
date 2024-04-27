@@ -13,8 +13,8 @@
 
     var mezuniyetDurumlari = new List<SelectListItem>
 {
-        new SelectListItem { Text = "Mezun", Value = "Mezun" },
-        new SelectListItem { Text = "Mezun Değil", Value = "Mezun Değil" }
+        new SelectListItem { Text = "Mezun", Value = "True" },
+        new SelectListItem { Text = "Mezun Değil", Value = "False" }
     };
 }
 @using (Html.BeginForm("Guncelle", "Ogrenci", FormMethod.Post))

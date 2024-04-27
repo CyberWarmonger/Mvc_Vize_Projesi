@@ -9,6 +9,11 @@
     var AktifOgrenciler = Model.Where(ogr => !ogr.OgrenciMezun.HasValue || !ogr.OgrenciMezun.Value).ToList();
 }
 
+@*//guncelleme isleminde gerektigi icin mezun ogrenciler burada da tanimli*@
+
+@{
+    var MezunOgrenciler = Model.Where(ogr => ogr.OgrenciMezun.HasValue && ogr.OgrenciMezun.Value).ToList();
+}
 
 
 
