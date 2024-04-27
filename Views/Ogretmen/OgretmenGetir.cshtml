@@ -1,0 +1,51 @@
+﻿@model Mvc_Vize_Projesi.Models.Entity.Tbl_Ogretmen
+
+@{
+    ViewBag.Title = "OgretmenGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@{
+    var bolumler = new List<SelectListItem>
+{
+        new SelectListItem { Text = "Bilgisayar", Value = "Bilgisayar" },
+        new SelectListItem { Text = "Makine", Value = "Makine" },
+    };
+}
+
+@using (Html.BeginForm("Guncelle", "Ogretmen", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.ogretmenid)
+        @Html.TextBoxFor(m => m.ogretmenid, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgretmenBolum)
+        @Html.DropDownListFor(m => m.OgretmenBolum, bolumler, "Lütfen bir bölüm seçiniz", new { @class = "form-control" })
+
+
+
+        @Html.LabelFor(m => m.OgretmenAd)
+        @Html.TextBoxFor(m => m.OgretmenAd, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgretmenSoyad)
+        @Html.TextBoxFor(m => m.OgretmenSoyad, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgretmenGiris)
+        @Html.EditorFor(m => m.OgretmenGiris, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.OgretmenCikis)
+        @Html.EditorFor(m => m.OgretmenCikis, new { @class = "form-control" })
+
+
+
+
+    </div>
+    <div>
+        <button class="btn btn-warning">Ogretmen Guncelle</button>
+    </div>
+}
+
+

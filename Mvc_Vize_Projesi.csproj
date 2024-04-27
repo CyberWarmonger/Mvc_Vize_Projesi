@@ -242,6 +242,7 @@
     <Content Include="Views\Ogretmen\YeniOgretmen.cshtml" />
     <Content Include="Views\idare\Index.cshtml" />
     <Content Include="Views\Ogrenci\OgrenciGetir.cshtml" />
+    <Content Include="Views\Ogretmen\OgretmenGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,5 +36,11 @@ namespace Mvc_Vize_Projesi.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult OgretmenGetir(int id)
+        {
+            var ogretmen = db.Tbl_Ogretmen.Find(id);
+            return View("OgretmenGetir", ogretmen);
+        }
     }
 }
