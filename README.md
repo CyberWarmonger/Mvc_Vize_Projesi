@@ -1,4 +1,2 @@
-
-![Ekran görüntüsü 2024-04-25 170753](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/24cdf584-a929-4c20-b243-eaff338edd3e)
-![Ekran görüntüsü 2024-04-25 180007](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/d79fe48e-f9c5-49c5-85ac-edeb27b37900)
-![Ekran görüntüsü 2024-04-25 173517](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/e5f19221-6a39-4352-9530-505d78f41d39)
+![ogrenci list](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/c4aa52d5-1f6c-459a-a7da-315806952b8e)
+![ogretmen list](https://github.com/CyberWarmonger/Mvc_Vize_Projesi/assets/114314744/b2f0fc00-b4f9-4d9e-acb7-630c1be034be)
