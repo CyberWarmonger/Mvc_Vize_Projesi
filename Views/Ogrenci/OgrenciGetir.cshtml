@@ -1,0 +1,52 @@
+﻿@model Mvc_Vize_Projesi.Models.Entity.Tbl_Ogrenci
+@{
+    ViewBag.Title = "OgrenciGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@{
+    var bolumler = new List<SelectListItem>
+{
+        new SelectListItem { Text = "Bilgisayar", Value = "Bilgisayar" },
+        new SelectListItem { Text = "Makine", Value = "Makine" },
+    };
+
+    var mezuniyetDurumlari = new List<SelectListItem>
+{
+        new SelectListItem { Text = "Mezun", Value = "Mezun" },
+        new SelectListItem { Text = "Mezun Değil", Value = "Mezun Değil" }
+    };
+}
+@using (Html.BeginForm("Guncelle", "Ogrenci", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.ogreinciid)
+        @Html.TextBoxFor(m => m.ogreinciid, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgrenciBolum)
+        @Html.DropDownListFor(m => m.OgrenciBolum, bolumler, "Lütfen bir bölüm seçiniz", new { @class = "form-control" })
+
+
+
+        @Html.LabelFor(m => m.OgrenciAdSoyad)
+        @Html.TextBoxFor(m => m.OgrenciAdSoyad, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgrenciNo)
+        @Html.TextBoxFor(m => m.OgrenciNo, new { @class = "form-control" })
+
+
+        @Html.LabelFor(m => m.OgrenciKredi)
+        @Html.TextBoxFor(m => m.OgrenciKredi, new { @class = "form-control" })
+
+
+
+        @Html.Label("Mezuniyet Durumu")
+        @Html.DropDownListFor(m => m.OgrenciMezun, mezuniyetDurumlari, "Mezuniyet Durumu Seçiniz", new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning">Ogrenci Guncelle</button>
+    </div>
+}
+

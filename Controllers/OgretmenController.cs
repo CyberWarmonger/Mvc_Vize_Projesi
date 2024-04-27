@@ -29,7 +29,7 @@ namespace Mvc_Vize_Projesi.Controllers
             db.SaveChanges();
             return View();
         }
-        public ActionResult Sil(int id)
+        public ActionResult SIL(int id)
         {
             var ogretmen = db.Tbl_Ogretmen.Find(id);
             db.Tbl_Ogretmen.Remove(ogretmen);
