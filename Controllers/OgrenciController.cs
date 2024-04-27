@@ -29,5 +29,13 @@ namespace Mvc_Vize_Projesi.Controllers
             db.SaveChanges();
             return View();
         }
-    }
+        public ActionResult SIL(int id) 
+        {
+            var ogrenci = db.Tbl_Ogrenci.Find(id);
+            db.Tbl_Ogrenci.Remove(ogrenci);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        }
 }

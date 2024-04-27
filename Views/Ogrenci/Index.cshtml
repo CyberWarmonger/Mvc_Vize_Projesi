@@ -4,6 +4,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+
+@{
+    var AktifOgrenciler = Model.Where(ogr => !ogr.OgrenciMezun.HasValue || !ogr.OgrenciMezun.Value).ToList();
+}
+
+@{
+    var MezunOgrenciler = Model.Where(ogr => ogr.OgrenciMezun.HasValue && ogr.OgrenciMezun.Value).ToList();
+}
+
+
+
+
+
 <table class="table table-bordered">
     <tr>
         <th>Ogrenci Id</th>
@@ -16,19 +29,53 @@
         <th>Guncelle</th>
     </tr>
     <tbody>
-        @foreach(var ogr in Model)
-            {
-                <tr>
-                    <td>@ogr.ogreinciid</td>
-                    <td>@ogr.OgrenciBolum</td>
-                    <td>@ogr.OgrenciAdSoyad</td>
-                    <td>@ogr.OgrenciNo</td>
-                    <td>@ogr.OgrenciKredi</td>
-                    <td>@ogr.OgrenciMezun</td>
-                    <td><a href="/Ogrenci/Sil/@ogr.ogreinciid" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/Ogrenci/Guncelle/@ogr.ogreinciid" class="btn btn-success">Guncelle</a></td>
-                </tr>
-            }
+        @foreach (var ogr in AktifOgrenciler)
+        {
+            <tr>
+                <td>@ogr.ogreinciid</td>
+                <td>@ogr.OgrenciBolum</td>
+                <td>@ogr.OgrenciAdSoyad</td>
+                <td>@ogr.OgrenciNo</td>
+                <td>@ogr.OgrenciKredi</td>
+                <td>@ogr.OgrenciMezun</td>
+                <td><a href="/Ogrenci/Sil/@ogr.ogreinciid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Ogrenci/Guncelle/@ogr.ogreinciid" class="btn btn-success">Guncelle</a></td>
+            </tr>
+        }
     </tbody>
 </table>
 <a href="/Ogrenci/YeniOgrenci/" class="btn btn-primary">Yeni Ogrenci Ekle</a>
+
+
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ogrenci Id</th>
+        <th>Ogrenci Bolum</th>
+        <th>Ogrenci Ad Soyad</th>
+        <th>Ogrenci No</th>
+        <th>Ogrenci Kredi</th>
+        <th>Mezun</th>
+        <th>Sil</th>
+        <th>Guncelle</th>
+    </tr>
+
+
+    <tbody>
+        @foreach (var ogr in MezunOgrenciler)
+        {
+            <tr>
+                <td>@ogr.ogreinciid</td>
+                <td>@ogr.OgrenciBolum</td>
+                <td>@ogr.OgrenciAdSoyad</td>
+                <td>@ogr.OgrenciNo</td>
+                <td>@ogr.OgrenciKredi</td>
+                <td>@ogr.OgrenciMezun</td>
+                <td><a href="/Ogrenci/SIL/@ogr.ogreinciid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Ogrenci/Guncelle/@ogr.ogreinciid" class="btn btn-success">Guncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

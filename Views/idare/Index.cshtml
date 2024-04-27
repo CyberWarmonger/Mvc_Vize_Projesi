@@ -1,0 +1,31 @@
+﻿@using Mvc_Vize_Projesi.Models.Entity;
+@model List<Tbl_Idare>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Idare Id</th>
+        <th>Idare Ad Soyad</th>
+        <th>Idare Unvan</th>
+        <th>Idare Basla</th>
+        <th>Idare Cikis</th>
+    </tr>
+    <tbody>
+        @foreach (var idare in Model)
+        {
+            <tr>
+                <td>@idare.idareid</td>
+                <td>@idare.idareAdSoyad</td>
+                <td>@idare.idareUnvan</td>
+                <td>@idare.idarebasla</td>
+                <td>@idare.idarecikis</td>
+                <td><a href="/Idare/Sil/@idare.idareid" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Idare/Guncelle/@idare.idareid" class="btn btn-success">Guncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Idare/YeniIdare/" class="btn btn-primary">Yeni Idareci Ekle</a>
