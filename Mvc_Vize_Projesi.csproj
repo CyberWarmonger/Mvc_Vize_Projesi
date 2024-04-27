@@ -245,6 +245,7 @@
     <Content Include="Views\Ogrenci\OgrenciGetir.cshtml" />
     <Content Include="Views\Ogretmen\OgretmenGetir.cshtml" />
     <Content Include="Views\Raporlar\Index.cshtml" />
+    <Content Include="Views\Ogrenci\Guncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

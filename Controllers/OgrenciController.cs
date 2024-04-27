@@ -49,10 +49,27 @@ namespace Mvc_Vize_Projesi.Controllers
             ogr.OgrenciBolum = p1.OgrenciBolum;
             ogr.OgrenciAdSoyad = p1.OgrenciAdSoyad;
             ogr.OgrenciNo = p1.OgrenciNo;
-            ogr.OgrenciKredi= p1.OgrenciKredi;
-            ogr.OgrenciMezun= p1.OgrenciMezun;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            ogr.OgrenciKredi = p1.OgrenciKredi;
+
+            // Öğrencinin kredi sayısını kontrol et
+            if (p1.OgrenciKredi <= 50)
+            {
+                // 50 kredi altında ise, hata mesajı ekleyin ve tekrar Guncelle sayfasını gösterin
+                ModelState.AddModelError(string.Empty, "Öğrenci 50 kredi altında olduğu için mezun olamaz.");
+                return View(p1);
+            }
+
+            // 50 kredi üstünde ise, mezun olmasına izin ver
+            ogr.OgrenciMezun = true;
+
+            if (ModelState.IsValid)
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // Eğer model doğrulama başarısız olursa, formu tekrar göster
+            return View(p1);
         }
     }
 }
